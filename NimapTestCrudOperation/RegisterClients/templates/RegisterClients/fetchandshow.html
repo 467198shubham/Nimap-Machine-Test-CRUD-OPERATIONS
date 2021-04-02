@@ -1,5 +1,5 @@
 {%extends 'RegisterClients/base.html'%} {% block content %}
-<div class="container">
+<div class="row">
     <div class="col-sm-4">
         <h5 class="text-center alert alert-info">Add New Clients</h5>
         <form action="" method="POST">
@@ -7,7 +7,7 @@
             <input type="submit" class="btn btn-success" value="Add"> </form>
     </div>
 
-    <div class="col-sm-7 offset-4">
+    <div class="col-sm-7 offset-1">
         <h5 class="text-center alert alert-info">Show Client Information</h5>
         {% if clnt %}
         <table class="table">
@@ -15,6 +15,7 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">ClientName</th>
+                    <th scope="col">Projects</th>
                     <th scope="col">Action</th>
 
 
@@ -25,6 +26,14 @@
                 <tr>
                     <th scope="row">{{cl.id}}</th>
                     <td>{{cl.clientname}}</td>
+                    <td>
+
+                        <select class="form-control" id="sel1" name="sellist1" value="Project">
+                            <option>Crud Operations</option>
+                            <option>Django Project</option>
+                            
+                          </select>
+                    </td>
                     <td>
                         <a href="{% url 'updatedata' cl.id %}" class="btn btn-warning btn-sm">Update</a>
                         <form action="{% url 'deletedata' cl.id %}" method="post" class="d-inline">{%csrf_token%}
@@ -44,5 +53,6 @@
         {% endif %}
     </div>
 </div>
+
 
 {% endblock content %}

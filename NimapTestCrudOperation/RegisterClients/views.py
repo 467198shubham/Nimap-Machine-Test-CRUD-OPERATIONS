@@ -1,6 +1,8 @@
 from django.shortcuts import render,HttpResponseRedirect
 from .forms import ClientRegistration
+
 from .models import User
+from .models import Projects
 
 # Create your views here.
 # This function for Fetch data and Show Data.
@@ -39,4 +41,5 @@ def delete_data(request,id):
         dl=User.objects.get(pk=id)
         dl.delete()
         return HttpResponseRedirect('/')
-    
+
+# This function will add projects. 
