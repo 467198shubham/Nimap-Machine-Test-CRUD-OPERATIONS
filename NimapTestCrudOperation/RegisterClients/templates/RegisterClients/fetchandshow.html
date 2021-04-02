@@ -1,0 +1,48 @@
+{%extends 'RegisterClients/base.html'%} {% block content %}
+<div class="container">
+    <div class="col-sm-4">
+        <h5 class="text-center alert alert-info">Add New Clients</h5>
+        <form action="" method="POST">
+            {%csrf_token%} {{form.as_p}}
+            <input type="submit" class="btn btn-success" value="Add"> </form>
+    </div>
+
+    <div class="col-sm-7 offset-4">
+        <h5 class="text-center alert alert-info">Show Client Information</h5>
+        {% if clnt %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">ClientName</th>
+                    <th scope="col">Action</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for cl in clnt %}
+                <tr>
+                    <th scope="row">{{cl.id}}</th>
+                    <td>{{cl.clientname}}</td>
+                    <td>
+                        <a href="{% url 'updatedata' cl.id %}" class="btn btn-warning btn-sm">Update</a>
+                        <form action="{% url 'deletedata' cl.id %}" method="post" class="d-inline">{%csrf_token%}
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </form>
+
+                    </td>
+
+
+                </tr>
+
+                {%endfor%}
+            </tbody>
+        </table>
+        {% else %}
+        <h4 class="text-center alert alert-warning">No Records</h4>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}
